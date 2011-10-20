@@ -23,8 +23,12 @@ class Youtube
 
       title = entry.css('title').text
       length = entry.xpath('./media:group/yt:duration').first['seconds']
+      
+      media_content_tag = entry.xpath('./media:group/media:content[@yt:format=5]').first
+      url = media_content_tag['url']
+      type = media_content_tag['type']
 
-      videos << {:title => title, :length => length}
+      videos << {:title => title, :length => length, :url => url, :type => type}
     end
     
     videos
