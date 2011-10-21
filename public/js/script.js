@@ -5,10 +5,10 @@
 var Yukebox = {};
 Yukebox.player = null;
 
-
 $(document).ready( function() {
   $("#search_btn").click(function() {
     $('#results').html("<em>Searching...</em>");
+    $('#results_help').hide();
     
     var q = $("#search").val();
     var u = "/search?q=" + encodeURIComponent(q);
@@ -34,12 +34,14 @@ $(document).ready( function() {
       var params = { allowScriptAccess: "always" };
       var atts = { id: "ytplayer" };
       swfobject.embedSWF(url, "player", "425", "356", "8", null, null, params, atts);
+
+      $('#getting_started').hide();
     }
   });
 });
 
 function showSearchResults(data){
-  console.log(data);
+  //console.log(data);
   var list = $("<ul></ul>");
   
   for( var i = 0; i < data.length; i++ ) {
@@ -50,6 +52,7 @@ function showSearchResults(data){
   }
   
   $('#results').html( list );
+  $('#results_help').show();
 }
 
 function onYouTubePlayerReady(playerid) {
