@@ -22,14 +22,19 @@ $(document).ready( function() {
   
   $('li.result-video').live('click', function(){
     console.log( $(this) );
-    //var url = $(this).data('url');
-    var type = $(this).data('type');
-    var url = "http://www.youtube.com/e/" + $(this).data('vid') + "?enablejsapi=1&version=3"
+    if (Yukebox.player) {
+      console.log("enqueue...");
+      var vid = $(this).data('vid');
+      $("#queue").append( "<li class=\"queue-video\" data-vid=\"" + vid + "\">" + $(this).text() + "</li>" );
+    } else {
+      //var url = $(this).data('url');
+      var type = $(this).data('type');
+      var url = "http://www.youtube.com/e/" + $(this).data('vid') + "?enablejsapi=1&version=3"
 
-    var params = { allowScriptAccess: "always" };
-    var atts = { id: "ytplayer" };
-    swfobject.embedSWF(url, "player", "425", "356", "8", null, null, params, atts);
-    
+      var params = { allowScriptAccess: "always" };
+      var atts = { id: "ytplayer" };
+      swfobject.embedSWF(url, "player", "425", "356", "8", null, null, params, atts);
+    }
   });
 });
 
@@ -48,10 +53,21 @@ function showSearchResults(data){
 }
 
 function onYouTubePlayerReady(playerid) {
-  Yukebox.player = document.getElementById("player");
+  Yukebox.player = document.getElementById("ytplayer");
+
+  Yukebox.player.addEventListener("onStateChange", "queueNextVideo");
 }
 
-
+function queueNextVideo(state) {
+  // When the video is done, grab the next one and play it
+  if( state == 0 ) {
+    var nextVideo = $("#queue li:first");
+    if (nextVideo.length > 0) {
+      Yukebox.player.loadVideoById( nextVideo.data('vid') );
+      nextVideo.remove();
+    }
+  }
+}
 
 
 
