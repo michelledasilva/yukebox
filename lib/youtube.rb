@@ -21,14 +21,20 @@ class Youtube
     # Find each 'entry'
     doc.css('entry').each do |entry|
 
-      title = entry.css('title').text
-      length = entry.xpath('./media:group/yt:duration').first['seconds']
-      
-      media_content_tag = entry.xpath('./media:group/media:content[@yt:format=5]').first
-      url = media_content_tag['url']
-      type = media_content_tag['type']
-
-      videos << {:title => title, :length => length, :url => url, :type => type}
+      begin
+        title = entry.css('title').text
+        length = entry.xpath('./media:group/yt:duration').first['seconds']
+        id = entry.xpath('./media:group/yt:videoid').first.text
+        
+        if media_content_tag = entry.xpath('./media:group/media:content[@yt:format=5]').first
+          url = media_content_tag['url']
+          type = media_content_tag['type']
+          
+          videos << {:id => id, :title => title, :length => length, :url => url, :type => type}
+        end
+        
+      rescue
+      end
     end
     
     videos
