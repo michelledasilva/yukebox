@@ -2,6 +2,10 @@
 
 */
 
+var Yukebox = {};
+Yukebox.player = null;
+
+
 $(document).ready( function() {
   $("#search_btn").click(function() {
     $('#results').html("<em>Searching...</em>");
@@ -22,14 +26,10 @@ $(document).ready( function() {
     var type = $(this).data('type');
     var url = "http://www.youtube.com/e/" + $(this).data('vid') + "?enablejsapi=1&version=3"
 
+    var params = { allowScriptAccess: "always" };
+    var atts = { id: "ytplayer" };
+    swfobject.embedSWF(url, "player", "425", "356", "8", null, null, params, atts);
     
-    var new_player = "<object width=\"425\" height=\"350\">";
-    new_player += "<param name=\"movie\" src=\"" + url + "\"></param>";
-    new_player += "<embed width=\"425\" height=\"350\" src=\"" + url + "\" type=\"" + type + "\"></embed>";
-    new_player += "</object>";
-    
-    console.log( new_player );
-    $('#player').html( new_player );
   });
 });
 
@@ -47,7 +47,9 @@ function showSearchResults(data){
   $('#results').html( list );
 }
 
-
+function onYouTubePlayerReady(playerid) {
+  Yukebox.player = document.getElementById("player");
+}
 
 
 
