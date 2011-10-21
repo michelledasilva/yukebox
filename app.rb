@@ -7,6 +7,10 @@ require "json"
 
 class App < Sinatra::Base
   
+  get "/" do
+    File.read( "public/index.html" )
+  end
+  
   get "/search" do
     #"<h1>#{params[:q]}</h1>"
     
