@@ -29,11 +29,12 @@ footer {
   margin-top: 50px;
 }
 
-#videoblock{
+#player, #ytplayer{
   width: 425px;
   height: 356px;
   padding: 10px;
   border: #30262d 1px solid;
+  text-align: center;
 }
 
 #getting_started{
@@ -46,13 +47,17 @@ ul {
 li {
   list-style-type: none;
 }
-li.result-video {
+li.result-video, li.queue-video {
   padding: 7px 0;
   padding-left: 21px;
   cursor: pointer;
   border-bottom: 1px #30262d solid;
 }
 
-li.plus:hover {
+li.result-video:hover {
   background: url(/img/plus.png) top left no-repeat;
+}
+
+li.queue-video:hover {
+  background: url(/img/minus.png) top left no-repeat;
 }

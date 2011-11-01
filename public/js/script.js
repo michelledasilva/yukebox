@@ -34,8 +34,6 @@ $(document).ready( function() {
       var params = { allowScriptAccess: "always" };
       var atts = { id: "ytplayer" };
       swfobject.embedSWF(url, "player", "425", "356", "8", null, null, params, atts);
-
-      $('#getting_started').hide();
     }
   });
 });
@@ -47,7 +45,7 @@ function showSearchResults(data){
   for( var i = 0; i < data.length; i++ ) {
     var video = data[i];
     
-    var r = $("<li class=\"result-video plus\" data-vid=\"" + video.id +"\" data-url=\"" + video.url + "\" data-type=\"" + video.type + "\">" + video.title + " (" + video.length + ")</li>");
+    var r = $("<li class=\"result-video\" data-vid=\"" + video.id +"\" data-url=\"" + video.url + "\" data-type=\"" + video.type + "\">" + video.title + " (" + video.length + ")</li>");
     list.append( r )
   }
   
