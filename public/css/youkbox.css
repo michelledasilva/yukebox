@@ -1,5 +1,42 @@
+body {
+  background-color: #1e141a;
+  color: #eedee8;
+  font-family: Helvetica, Arial, Verdana;
+}
+
+.lightText {
+  color: #eedee8;
+}
+
+/*
+gradient light #30262d
+gradient dark #473a42
+*/
+header h1 {
+  width: 265px;
+  height: 65px;
+  background: url(/img/yukebox.jpg) top left no-repeat;
+}
+
+header h1 span{
+  display: none;
+}
+
 footer {
   font-size: smaller;
+  text-align: center;
+  text-color: #473a42;
+  margin-top: 50px;
+}
+
+#videoblock{
+  width: 425px;
+  height: 356px;
+  padding: 10px;
+  border: #30262d 1px solid;
+}
+
+#getting_started{
   text-align: center;
 }
 
@@ -10,7 +47,12 @@ li {
   list-style-type: none;
 }
 li.result-video {
-  padding: 5px 0;
+  padding: 7px 0;
+  padding-left: 21px;
   cursor: pointer;
-  border-bottom: 1px #F0F0F0 solid;
+  border-bottom: 1px #30262d solid;
+}
+
+li.plus:hover {
+  background: url(/img/plus.png) top left no-repeat;
 }
