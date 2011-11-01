@@ -55,7 +55,18 @@ function showSearchResults(data){
   for( var i = 0; i < data.length; i++ ) {
     var video = data[i];
     
-    var r = $("<li class=\"result-video\" data-vid=\"" + video.id +"\" data-url=\"" + video.url + "\" data-type=\"" + video.type + "\">" + video.title + " (" + video.length + ")</li>");
+    var hours = parseInt( video.length / 3600 ) % 24;
+    var minutes = parseInt( video.length / 60 ) % 60;
+    var seconds = video.length % 60;
+    
+    var formatted_date;
+    if( hours > 0) {
+      formatted_length = (hours < 10 ? "0" + hours : hours) + ":" + (minutes < 10 ? "0" + minutes : minutes) + ":" + (seconds  < 10 ? "0" + seconds : seconds);
+    } else {
+      formatted_length = (minutes < 10 ? "0" + minutes : minutes) + ":" + (seconds  < 10 ? "0" + seconds : seconds);
+    }
+    
+    var r = $("<li class=\"result-video\" data-vid=\"" + video.id +"\" data-url=\"" + video.url + "\" data-type=\"" + video.type + "\">" + video.title + " (" + formatted_length + ")</li>");
     list.append( r )
   }
   
@@ -79,20 +90,3 @@ function queueNextVideo(state) {
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
