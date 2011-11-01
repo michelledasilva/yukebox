@@ -40,7 +40,12 @@
 
   <div id="container">
     <header class="container_16">
-      <h1><span>Yukebox</span></h1>
+      <h1 class="grid_8"><span>Yukebox</span></h1>
+      <div class="grid_8 search">
+        <input type="text" id="search">
+        <input type="button" value="search" id="search_btn">
+      </div>
+      <div class="clear"></div>
     </header>
     <div id="main" role="main" class="container_16">
       <div class="grid_8" id="videoblock">
@@ -49,8 +54,6 @@
       </div>
       
       <div class="grid_8">
-        <input type="text" id="search">
-        <input type="button" value="search" id="search_btn">
         <div id="results"></div>
         <div id="results_help" style="display: none">
           Click on a result above to queue the video for playback.

@@ -5,19 +5,25 @@
 var Yukebox = {};
 Yukebox.player = null;
 
-$(document).ready( function() {
-  $("#search_btn").click(function() {
-    $('#results').html("<em>Searching...</em>");
-    $('#results_help').hide();
+function doSearch() {
+  $('#results').html("<em>Searching...</em>");
+  $('#results_help').hide();
     
-    var q = $("#search").val();
-    var u = "/search?q=" + encodeURIComponent(q);
-    $.ajax({
-      url: u,
-      type: 'GET',
-      success: showSearchResults
-      
-    });
+  var q = $("#search").val();
+  var u = "/search?q=" + encodeURIComponent(q);
+  $.ajax({
+    url: u,
+    type: 'GET',
+    success: showSearchResults
+  });
+}
+
+$(document).ready( function() {
+  $("#search_btn").click(doSearch);
+  $("#search").keypress(function(e){
+    if(e.which == 13) {
+      doSearch();
+    }
   });
   
   $('li.result-video').live('click', function(){
