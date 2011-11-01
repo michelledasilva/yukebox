@@ -21,7 +21,7 @@ $(document).ready( function() {
   });
   
   $('li.result-video').live('click', function(){
-    console.log( $(this) );
+    //console.log( $(this) );
     if (Yukebox.player) {
       console.log("enqueue...");
       var vid = $(this).data('vid');
@@ -35,6 +35,10 @@ $(document).ready( function() {
       var atts = { id: "ytplayer" };
       swfobject.embedSWF(url, "player", "425", "356", "8", null, null, params, atts);
     }
+  });
+  
+  $('li.queue-video').live('click', function(){
+    $(this).remove();
   });
 });
 
